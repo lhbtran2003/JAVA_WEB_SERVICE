@@ -19,5 +19,4 @@ public class Subject {
     private String subjectCode;
     private String subjectName;
 
-
 }
