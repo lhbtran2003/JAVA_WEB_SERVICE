@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Danh sách phim</h1>
+<button><a href="/employees/add">Thêm phim</a></button>
+<form action="/employees" method="get">
+    <input name="keyword">
+    <select name="sortDirection">
+        <option value="" name=""></option>
+        <option value="asc" >Tăng dần</option>
+        <option value="desc">Giam dần</option>
+    </select>
+    <select name="sortBy">
+        <option value="id">ID</option>
+        <option value="name">Tên</option>
+    </select>
+    <button>Tìm kiếm</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Duration</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody th:if="${!employees.isEmpty()}">
+    <tr th:each="m : ${employees}">
+        <td th:text="${m.name}"></td>
+        <td th:text="${m.email}"></td>
+        <td th:text="${m.phoneNumber}"></td>
+        <td th:text="${m.salary}"></td>
+        <td class="flex-box">
+            <button><a th:href="@{/employees/edit/{id}(id=${m.id})}">Edit</a></button>
+            <form th:action="@{/employees/delete/{id}(id=${m.id})}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
