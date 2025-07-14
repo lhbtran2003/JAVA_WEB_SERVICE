@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Danh sách chuyến bay</h1>
+<form action="/flights" method="get">
+    <input name="departure" placeholder="Nhập điểm đi">
+    <input name="destination" placeholder="Nhập điểm đến">
+    <button>Tìm kiếm</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>Fight Number</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody th:if="${!flights.isEmpty()}">
+    <tr th:each="m : ${flights}">
+        <td th:text="${m.flightNumber}"></td>
+        <td th:text="${m.price}"></td>
+        <td class="flex-box">
+            <form th:action="@{/bookings/add}" method="post">
+                <input type="hidden" name="flight_id" th:value="${m.id}">
+                <button type="submit">Add Booking</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

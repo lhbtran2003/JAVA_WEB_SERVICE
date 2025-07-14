@@ -2,7 +2,6 @@ package liliana.session_3.controller;
 
 import liliana.session_3.entity.Employee;
 import liliana.session_3.service.EmployeeService;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

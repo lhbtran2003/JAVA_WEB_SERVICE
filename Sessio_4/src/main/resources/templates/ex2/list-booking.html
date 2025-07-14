@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Fight Number</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody th:if="${!bookings.isEmpty()}">
+    <tr th:each="m : ${bookings}">
+        <td th:text="${m.flight.departure}"></td>
+        <td th:text="${m.flight.destination}"></td>
+        <td th:text="${m.flight.flightNumber}"></td>
+        <td th:text="${m.flight.price}"></td>
+        <td class="flex-box">
+            <form th:action="@{/bookings/cancel/{id}(id=${m.id})}" method="post">
+                <button type="submit">Cancel Booking</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

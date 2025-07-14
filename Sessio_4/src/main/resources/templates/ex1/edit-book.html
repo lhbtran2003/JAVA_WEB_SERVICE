@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/books/edit/{id}(id=${bookId})}" method="post" th:object="${bookUpdate}">
+    <input type="hidden" name="id" th:value="${bookId}">
+    Tên  : <input th:field="*{title}">
+    Email : <input th:field="*{author}">
+    Sdt : <input th:field="*{publisher}">
+    Lượng : <input th:field="*{year}">
+    <button type="submit">Cập nhật</button>
+</form>
+</body>
+</html>

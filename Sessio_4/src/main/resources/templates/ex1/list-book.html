@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Danh sách book</h1>
+<button><a href="/books/add">Thêm phim</a></button>
+<form action="/books" method="get">
+    <input name="keyword">
+    <select name="sortDirection">
+        <option value="" name=""></option>
+        <option value="asc" >Tăng dần</option>
+        <option value="desc">Giam dần</option>
+    </select>
+    <select name="sortBy">
+        <option value="id">ID</option>
+        <option value="name">Tên</option>
+    </select>
+    <button>Tìm kiếm</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Publisher</th>
+        <th>Year</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody th:if="${!books.isEmpty()}">
+    <tr th:each="m : ${books}">
+        <td th:text="${m.title}"></td>
+        <td th:text="${m.author}"></td>
+        <td th:text="${m.publisher}"></td>
+        <td th:text="${m.year}"></td>
+        <td class="flex-box">
+            <button><a th:href="@{/books/edit/{id}(id=${m.id})}">Edit</a></button>
+            <form th:action="@{/books/delete/{id}(id=${m.id})}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
